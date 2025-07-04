@@ -1,0 +1,17 @@
+services:
+  # Define o único serviço para sua aplicação
+  app:
+    # Constrói a imagem usando o Dockerfile no diretório atual
+    build: .
+    # Nome do contêiner para fácil identificação
+    container_name: api
+
+    # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner,
+    # permitindo que você acesse a aplicação via http://localhost:8000
+    ports:
+      - "8000:8000"
+
+    # Monta o diretório atual dentro do contêiner em /app.
+    # Essencial para que o uvicorn com --reload funcione, pois ele detectará as mudanças nos seus arquivos locais.
+    volumes:
+      - .:/app
